@@ -61,7 +61,6 @@ function showCategoriesList(){
             </a>
             `
         }
-
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
 }
@@ -104,10 +103,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
-
         minCount = undefined;
         maxCount = undefined;
-
         showCategoriesList();
     });
 
@@ -124,13 +121,12 @@ document.addEventListener("DOMContentLoaded", function(e){
             minCount = undefined;
         }
 
-        if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
+        if((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
             maxCount = parseInt(maxCount);
         }
         else{
             maxCount = undefined;
         }
-
         showCategoriesList();
     });
 });
