@@ -42,20 +42,11 @@
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         }
-        var auth2 = gapi.auth2.getAuthInstance();
-      if (auth2.isSignedIn.Ab === true){
-        window.location.href = "https://github.com/Andreaghoppe91";
-      }
+   
       let usuario = perfil.getEmail();
       sessionStorage.setItem("usuario", usuario);
-      signOut();
-    }
-    function signOut(){
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function(){
-        console.log("Sesion cerrada");
-      });
-      }
+
+
         </script>
     </form>
   </div>

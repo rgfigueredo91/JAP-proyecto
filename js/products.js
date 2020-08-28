@@ -51,7 +51,7 @@ function showProductList(){
                         <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
                     </div>
                     <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
+                        <div class="d-flex w-100 justify-content-between" id="nameAuto>
                         <h4 class="mb-1">`+ product.name +" - U$S "+ product.cost +`</h4>
                         <small class="text-muted">` +product.soldCount + ` vendidos</small>
                         </div>
@@ -65,6 +65,9 @@ function showProductList(){
         document.getElementById("pro-list-container").innerHTML = htmlContentToAppend;
     }
 }
+
+
+
 
 function sortAndShowProducts(sortCriteria, productsArray){
     currentSortCriteria = sortCriteria;
