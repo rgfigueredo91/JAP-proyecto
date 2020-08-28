@@ -34,17 +34,3 @@ var getJSONData = function(url){
         return result;
     });
 }
-
-document.addEventListener("DOMContentLoaded", function(e){
-  const logoutButton = document.getElementById('logout');
-  let token = localStorage.getItem('token');
-
-  logoutButton.onclick = () => {
-    localStorage.removeItem('token');
-    window.location.href = '/login'; 
-  };
-
-  if(!token) {
-    window.location.href = '/login'; 
-  }
-});

@@ -1,6 +1,6 @@
-const ORDER_ASC_BY_NAME = "AZ";
-const ORDER_DESC_BY_NAME = "ZA";
-const ORDER_BY_PROD_COUNT = "Cant.";
+const ORDER_BY_PROD_PRICE = "$a";
+const ORDER_BY_PROD_PRICE2 = "$b";
+const ORDER_BY_PROD_COUNT = "Rel.";
 var currentProdudctsArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
@@ -8,23 +8,23 @@ var maxCount = undefined;
 
 function sortProducts(criteria, array){
     let result = [];
-    if (criteria === ORDER_ASC_BY_NAME)
+    if (criteria === ORDER_BY_PROD_PRICE)
     {
         result = array.sort(function(a, b) {
-            if ( a.name < b.name ){ return -1; }
-            if ( a.name > b.name ){ return 1; }
+            if ( a.cost > b.cost){ return 1; }
+            if ( a.cost < b.cost){ return -1; }
             return 0;
         });
-    }else if (criteria === ORDER_DESC_BY_NAME){
+    }else if (criteria === ORDER_BY_PROD_PRICE2){
         result = array.sort(function(a, b) {
-            if ( a.name > b.name ){ return -1; }
-            if ( a.name < b.name ){ return 1; }
+            if ( a.cost > b.cost){ return -1; }
+            if ( a.cost < b.cost){ return 1; }
             return 0;
         });
     }else if (criteria === ORDER_BY_PROD_COUNT){
         result = array.sort(function(a, b) {
-            let aCount = parseInt(a.productCount);
-            let bCount = parseInt(b.productCount);
+            let aCount = parseInt(a.soldCount);
+            let bCount = parseInt(b.soldCount);
 
             if ( aCount > bCount ){ return -1; }
             if ( aCount < bCount ){ return 1; }
@@ -52,8 +52,8 @@ function showProductList(){
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ product.name +`</h4>
-                            <small class="text-muted">` + product.soldCount + ` artículos</small>
+                        <h4 class="mb-1">`+ product.name +" - U$S "+ product.cost +`</h4>
+                        <small class="text-muted">` +product.soldCount + ` vendidos</small>
                         </div>
                         <p class="mb-1">` + product.description + `</p>
                     </div>
@@ -85,16 +85,16 @@ function sortAndShowProducts(sortCriteria, productsArray){
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
-            sortAndShowProducts(ORDER_ASC_BY_NAME, resultObj.data);
+            sortAndShowProducts(ORDER_BY_PROD_PRICE, resultObj.data);
         }
     });
 
     document.getElementById("sortAsc").addEventListener("click", function(){
-        sortAndShowProducts(ORDER_ASC_BY_NAME);
+        sortAndShowProducts(ORDER_BY_PROD_PRICE);
     });
 
     document.getElementById("sortDesc").addEventListener("click", function(){
-        sortAndShowProducts(ORDER_DESC_BY_NAME);
+        sortAndShowProducts(ORDER_BY_PROD_PRICE2);
     });
 
     document.getElementById("sortByCount").addEventListener("click", function(){

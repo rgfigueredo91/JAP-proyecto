@@ -95,6 +95,13 @@ footer p {
   transform: translate(-50%, 0);
 }
 
+.search {
+  margin-top: 7px;
+  float: left;
+  width: 400px;
+  border-radius: 15px;
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;
