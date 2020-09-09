@@ -1,13 +1,8 @@
 let category = {};
-
-
 function showImagesGallery(array){
-
     let htmlContentToAppend = "";
-
     for(let i = 0; i < array.length; i++){
         let imageSrc = array[i];
-
         htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
@@ -15,27 +10,9 @@ function showImagesGallery(array){
             </div>
         </div>
         `
-
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
 }
-
-
-
-
-
-//boton para enviar
-//botonEnviar
-
-//id nombre
-//nameid
-
-
-//id text area
-//nuevoComentario
-
-
-
 function enviarComentario(){
     console.log("prueba");
     let name = document.getElementById("nameid").value;
@@ -49,43 +26,25 @@ function enviarComentario(){
     if(mes<10) {
         mes='0'+mes;
     } 
-
-
     let year =  fecha.getFullYear()
     let hora = fecha.toLocaleTimeString()
     let fechaEnviada = year + " - " + mes + "-" + dia + " - " +  hora;
-
-
-   
-
-
     let inputs = document.getElementsByName("puntaje");
     for (let i = 0, length = inputs.length; i < length; i++) {
         if (inputs[i].checked) {
             // do whatever you want with the checked radio
             score = inputs[i].value
         }}
-
         let arrayComentarios = {
             "score": score,
             "description": comentario ,
             "user": name,
             "dateTime": fechaEnviada
         };
-  
-
-
-
-
         comments.push(arrayComentarios);
         showCommentsList(comments);
-
-   
 }
-
-
 function showCommentsList(array){
-    
     let htmlContentToAppend = "";
     for(let i = 0; i < array.length; i++){
         let commentElement = array[i];
@@ -101,9 +60,7 @@ function showCommentsList(array){
             <p style="margin: 15px 0 0 0 ;" id="dateComment"><em>`+commentElement.dateTime+`</em></p>
           </div>
         `
-
-        document.getElementById("comentariosEnviados").innerHTML = htmlContentToAppend;
-        
+        document.getElementById("comentariosEnviados").innerHTML = htmlContentToAppend; 
     }
 }
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -130,10 +87,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
-
         comments = resultObj.data;
         showCommentsList(comments);
 });
-
-
 });
