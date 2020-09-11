@@ -15,7 +15,8 @@ function showImagesGallery(array){
 }
 function enviarComentario(){
     console.log("prueba");
-    let name = document.getElementById("nameid").value;
+    let name = document.getElementById("nombre").innerHTML;
+    console.log(name)
     let comentario = document.getElementById("nuevoComentario").value;
     let fecha = new Date();
     let dia = fecha.getDate();
