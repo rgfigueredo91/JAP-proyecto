@@ -1,24 +1,72 @@
 let category = {};
+let relatedProducts = {};
 function showImagesGallery(array){
     let htmlContentToAppend = "";
-    for(let i = 0; i < array.length; i++){
-        let imageSrc = array[i];
+
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="` + array[0] + `" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="` + array[1] + `" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="` + array[2] + `" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="` + array[3] + `" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="` + array[4] + `" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-        </div>
         `
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+    
+}
+
+
+
+function showRelated(array) {
+    htmlContentToAppend = "";
+    for (i = 0; i < category.relatedProducts.length; i++) {
+        let cat = category.relatedProducts[i];
+        let related = array[cat];
+        htmlContentToAppend += `
+        <div class="col-lg-3 col-md-4 col-6">
+        <div class="d-block mb-4 h-100">
+             <img class="img-fluid img-thumbnail" src="` + related.imgSrc + `" alt="">
+        </div>
+        </div>  `
+        document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
     }
 }
+
+
+
 function enviarComentario(){
     console.log("prueba");
     let name = document.getElementById("nombre").innerHTML;
     console.log(name)
     let comentario = document.getElementById("nuevoComentario").value;
     let fecha = new Date();
+    console.log(fecha)
     let dia = fecha.getDate();
     if(dia<10) {
         dia='0'+dia;
@@ -33,7 +81,7 @@ function enviarComentario(){
     let inputs = document.getElementsByName("puntaje");
     for (let i = 0, length = inputs.length; i < length; i++) {
         if (inputs[i].checked) {
-            // do whatever you want with the checked radio
+
             score = inputs[i].value
         }}
         let arrayComentarios = {
@@ -45,6 +93,7 @@ function enviarComentario(){
         comments.push(arrayComentarios);
         showCommentsList(comments);
 }
+
 function showCommentsList(array){
     let htmlContentToAppend = "";
     for(let i = 0; i < array.length; i++){
@@ -53,7 +102,7 @@ function showCommentsList(array){
         htmlContentToAppend += `
         <div id="comentario">
             <h4 style="text-align: left;">
-              <span style="display: inline-flex; padding-left: 40px;"><i class="fas fa-user-alt"></i></span><span style="display: inline-flex; vertical-align: bottom;" id="userComment"><strong>`+commentElement.user+`</strong></span>
+              <span style="display: inline-flex; padding-left: 40px;"><i class=""></i></span><span style="display: inline-flex; vertical-align: bottom;" id="userComment"><strong>`+commentElement.user+`</strong></span>
               <span style="float: right; padding-right: 40px ;" id="score">Calificacion: `+scorePoints+`</span>
             </h4>
             <hr>
@@ -77,14 +126,23 @@ document.addEventListener("DOMContentLoaded", function(e){
             let ventaProducto = document.getElementById("productSold");
             let categoriaProducto = document.getElementById("productCategory");
             let precioProducto = document.getElementById("productPrice");
-
+            
             nombreProducto.innerHTML = category.name;
             descripcionProducto.innerHTML = category.description;
             ventaProducto.innerHTML = category.soldCount;
             categoriaProducto.innerHTML = category.category;
             precioProducto.innerHTML = category.cost;
-            //Muestro las imagenes en forma de galería
+           
+
             showImagesGallery(category.images);
+
+            getJSONData(PRODUCTS_URL).then(function(releated) {
+                if (releated.status === "ok") {
+
+                    related = releated.data;
+                    showRelated(related);
+                }
+            });
         }
     });
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
@@ -92,3 +150,4 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCommentsList(comments);
 });
 });
+
