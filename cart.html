@@ -80,22 +80,119 @@
            </div>
            
         </div>      
-        <hr class="mb-4">
-                 <h5 class="mb-3">Tipo de envío</h5>
-                  <div class="d-block my-3">
-                      <div class="custom-control custom-radio">
-                        <input id="radioprem" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
-                        <label class="custom-control-label" for="radioprem">A domicilio</label>
+        
+        <div class="text-center p-4" id="seccionEnvios">
+          <h2><i class="fas fa-shipping-fast"></i>Opciones de envio</h2>
+     
+          <hr>
+          
+          <div class="row text-center sinSeleccionar"></div>
+          <input type="radio" id="envio1" name="envio" value="15"checked onchange=actualizar()>
+          <label for="envio1">
+            
+              <h5>Rapido 1 a 3 dias (15%)</h5>
+            
+          </label>
+
+
+          <div class="row text-center sinSeleccionar"></div>
+          <input type="radio" id="envio2" name="envio" value="7" onchange=actualizar()>
+          <label for="envio2">
+            
+              <h5>Medio 4 a 9 dias (7%)</h5>
+            
+          </label>
+          <div class="row text-center sinSeleccionar" ></div>
+          <input type="radio" id="envio3" name="envio" value="5" onchange=actualizar()>
+          <label for="envio3">
+            
+              <h5>Lento 10 a 15 dias (5%)
+              </h5>
+            
+          </label>
+          <br><br>
+       
+                  
+                
+
+                  <br>
+                  <h2><i class="fas fa-wallet"></i> Pago</h2>
+                  <hr>
+                  <p class="lead">Selecciona la forma de pago</p>
+                  <input type="button" id="credito" name="pago" value="click aqui" data-toggle="modal" data-target="#tarjeta">
+                  <label for="credito">
+                    <div class="row text-center sinSeleccionar">
+                      <h6></h6>
+                    </div>
+                  </label>
+                  <hr>
+         
+                 
+            
+             
+                  <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                      <div>
+                        <h6 class="my-0">Precio</h6>
+                        <small class="text-muted">Total de tus productos</small>
                       </div>
-                      <div class="custom-control custom-radio">
-                        <input id="radioexp" name="publicationType" type="radio" class="custom-control-input" required="">
-                        <label class="custom-control-label" for="radioexp">Retiro en el lugar</label>
-                      </div>     
-                   </div>
-                   <hr class="mb-4">
-                  <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
-                  </form>
+                      <span class="text-muted" id="costoProducto">-</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                      <div>
+                        <h6 class="my-0">Porcentaje</h6>
+                        <small class="text-muted">Según el tipo de envio</small>
+                      </div>
+                      <span class="text-muted" id="comision">-</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                      <h3>Total (US$)</h3>
+                      <h3 id="costoTotal"><strong ></strong></h3>
+                    </li>
+                  </ul>
+                  <br>
+                  <button onclick=finish() style="background-color:#000; width: 100px; height: 70px;" class="btn btn-primary" data-dismiss="modal">Finalizar Compra</button>
+                </div>
+                </div>
+            
+                <div class="modal fade" tabindex="-1" role="dialog" id="tarjeta">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Ingrese los datos de su tarjeta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container text-center">
+                          <form>
+                          <label for="ntarj" style="color: black;">N° de Tarjeta:</label>
+                          <input type="number" size="18"  style="margin: 8px;" id="ntarj" required>
+                          <div>
+                          <label for="cvv" style="color: black;" >CVV:</label>
+                          <input type="number" size="3" style="margin: 8px;" id="cvv"  required ><br></div>
+                          <label for="venci" style="color: black;">Fecha de vencimiento:</label>
+                          <input type="month" step="1" min="9-2020" style="margin: 8px;" id="venci" size="7"  required><br>
+                          <label for="nombre" style="color: black;">Nombre del Titular:</label>
+                          <input type="text" size="20" id="nombre2" style="margin: 8px;" required style="color: #000">
+                          <label for="ci" style="color: black;">Cedula de Identidad:</label>
+                          <input type="number" size="10" id="ci" style="margin: 8px;" required><br>
+                          <button style="background-color:#000;" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+         
+                 
+
+
+
+
       </div>
+    
       </main>
 
   <footer class="text-muted">
@@ -104,7 +201,6 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-
         <div id="spinner-wrapper">
           <div class="lds-ring">
             <div></div>
@@ -112,7 +208,7 @@
             <div></div>
             <div></div>
           </div>
-        </div>
+      </div>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/dropzone.js"></script>
