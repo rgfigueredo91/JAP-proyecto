@@ -12,22 +12,7 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
@@ -46,33 +31,62 @@
           <a class="py-2 d-none d-md-inline-block" id="nombre"></a>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Ver mi carrito</a>
-          <a class="dropdown-item" href="#">Mi Perfil</a>
+          <a class="dropdown-item" href="cart.html">Ver mi carrito</a>
+          <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
           <a class="dropdown-item" href="index.html">Cerrar sesión</a>
         </div>
       </div> 
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main role="main" class="pb-5">
+    <div class="text-center p-4 container">
+        <div class="row justify-content-center">
+            <h2>Perfil</h2>
+        </div>
+        <div class="row justify-content-center">
+            
+        </div>
+        <form action="">
+            <div class="row justify-content-center">
+                <button id="toggleEditButton" type="submit" background-color: red>
+                    Modificar datos personales
+                </button>
+            </div>
+            <div class="row justify-content-center">
+               
+              
+            </div>
+            <div class="row justify-content-center">
+                <input type="text" id="nombreCompleto" class="toggleEdit profileData text-center border-0"
+                    placeholder="Nombre" disabled>
+            </div>
+            <div class="row justify-content-center">
+                <input type="text" id="edadUsuario" class="toggleEdit  profileData text-center border-0"
+                    placeholder="Edad" disabled required>
+            </div>
+            <div class="row justify-content-center">
+                <input type="email" id="emailUsuario" class="toggleEdit  profileData text-center border-0"
+                    placeholder="E-mail" disabled>
+            </div>
+            <div class="row justify-content-center">
+                <input type="tel" id="telefonoUsuario" class="toggleEdit  profileData text-center border-0"
+                    placeholder="Teléfono de contacto" disabled>
+            </div>
+        </form>
     </div>
-  </div>
-  <footer class="text-muted bg-light">
+</main>
+<footer class="text-muted bg-light">
     <div class="container">
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
-  </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
+</footer>
+<div class="alert fade alert-success" role="alert" id="alertResult">
     <span id="resultSpan"></span>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
     </button>
-  </div>
+</div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
